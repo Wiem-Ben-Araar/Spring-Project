@@ -1,23 +1,30 @@
 package com.example.foyerwiembenaraar.DAO.Entities;
 
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
-import java.time.LocalDate;
-@Getter
-@Setter
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.Date;
+import java.util.Set;
+
 @Entity
 @Table(name="Reservation")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Reservation {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private String idReservation;
 
-    private LocalDate anneeUniversitaire;
+    @Column(name="anneeReservation")
+    private Date anneeReservation ;
 
-    private boolean estValide;
+    @Column(name="estValide")
+    private Boolean estValide ;
 
-
-
+    @ManyToMany(cascade = CascadeType.ALL)
+    public Set<Etudiant> etu ;
 }

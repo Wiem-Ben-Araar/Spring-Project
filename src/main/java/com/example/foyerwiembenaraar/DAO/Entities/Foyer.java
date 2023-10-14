@@ -1,22 +1,25 @@
 package com.example.foyerwiembenaraar.DAO.Entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import com.example.foyerwiembenaraar.DAO.Entities.Universite;
+import jakarta.persistence.*;
+import lombok.*;
 
+@Entity
+@Table(name="Foyer")
 @Getter
 @Setter
-@Entity
-@Table (name="Foyer")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Foyer {
-
     @Id
-    private long idFoyer;
-    @Column(name="foyerName")
-    private String nomFoyer;
+    private  String idFoyer ;
+    @Column(name="nomFoyer")
+    private String nomFoyer ;
+
     @Column(name="capaciteFoyer")
-    private long capaciteFoyer;
+    private long capaciteFoyer ;
+
+    @OneToOne(mappedBy = "foyer")
+    private Universite universite ;
 }

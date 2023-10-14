@@ -1,19 +1,25 @@
 package com.example.foyerwiembenaraar.DAO.Entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+@Entity
+@Table(name="universite")
 @Getter
 @Setter
-@Entity
-@Table(name="Univerrsite")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Universite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idUniversite;
-    @Column(name="NameUniversity")
-    private String nomUniversite;
-    @Column(name="adresse")
-    private String adresse;
+    private long idUniversite ;
+    @Column(name="nomUniversite")
+    private String nomUniversite ;
+    @Column(name="adress")
+    private String adress ;
+
+    @OneToOne
+    private Foyer foyer ;
+
 }
