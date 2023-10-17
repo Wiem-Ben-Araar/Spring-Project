@@ -6,10 +6,7 @@ import com.example.foyerwiembenaraar.Services.ChambreService;
 
 import com.example.foyerwiembenaraar.Services.IChambreService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +24,20 @@ public class ChambreRestController {
     @PostMapping("/addChambre")
     Chambre addChambre(@RequestBody Chambre c){
         return iChambreService.addChambre(c);
+    }
+
+    @PutMapping("updateChambre")
+    Chambre editChamber(@RequestBody Chambre c){
+        return iChambreService.editChambre(c);
+    }
+
+    @DeleteMapping("deleteChamberById/{id}")
+    void DeleteChamberByID(@PathVariable("id") long id){
+        iChambreService.deleteById(id);
+    }
+
+    @DeleteMapping("deleteChambre")
+    void DeleteChambre(@RequestBody Chambre c){
+        iChambreService.delete(c);
     }
 }

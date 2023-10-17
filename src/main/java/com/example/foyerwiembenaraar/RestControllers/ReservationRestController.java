@@ -4,10 +4,7 @@ import com.example.foyerwiembenaraar.DAO.Entities.Chambre;
 import com.example.foyerwiembenaraar.DAO.Entities.Reservation;
 import com.example.foyerwiembenaraar.Services.IReservationService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +21,20 @@ public class ReservationRestController {
     @PostMapping("/addReservation")
     Reservation addReservation(@RequestBody Reservation r){
         return iReservationService.addReservation(r);
+    }
+
+    @PutMapping("updateReservation")
+    Reservation updateReservation(@RequestBody Reservation r){
+        return iReservationService.editReservation(r);
+    }
+
+    @DeleteMapping("DeleteReservation/{id}")
+    void DeleteReservationByID(@PathVariable("id") String id){
+        iReservationService.deleteById(id);
+    }
+
+    @DeleteMapping("DeleteReservation")
+    void DeleteReservation(@RequestBody Reservation r){
+        iReservationService.delete(r);
     }
 }

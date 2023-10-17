@@ -4,10 +4,7 @@ import com.example.foyerwiembenaraar.DAO.Entities.Chambre;
 import com.example.foyerwiembenaraar.DAO.Entities.Etudiant;
 import com.example.foyerwiembenaraar.Services.IEtudiantService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +20,20 @@ public class EtudiantRestController {
     @PostMapping("/addEtudiant")
     Etudiant addEtudiant(@RequestBody Etudiant e){
         return iEtudiantService.addEtudiant(e);
+    }
+
+    @PutMapping("updateEtudiant")
+    Etudiant updateEtudiant(@RequestBody Etudiant e){
+        return  iEtudiantService.editEtudiant(e);
+    }
+
+    @DeleteMapping("DeleteByIDEtudiant/{id}")
+    void DeleteEtudiantByID(@PathVariable("id") long id){
+        iEtudiantService.deleteById(id);
+    }
+
+    @DeleteMapping("deleteEtudiant")
+    void DeleteEtudiant (@RequestBody Etudiant e){
+        iEtudiantService.delete(e);
     }
 }
