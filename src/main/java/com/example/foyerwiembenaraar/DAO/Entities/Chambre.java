@@ -3,6 +3,7 @@ package com.example.foyerwiembenaraar.DAO.Entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.Set;
 @Getter
 @Setter
@@ -11,7 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="Chambre")
-public class Chambre {
+public class Chambre implements Serializable {
    @Id
    @GeneratedValue(strategy =GenerationType.IDENTITY)
     private long idChambre;
@@ -21,8 +22,9 @@ public class Chambre {
     @Enumerated(EnumType.STRING)
     private TypeChambre typeChambre;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Bloc> blocs;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Bloc bloc;
+
 
     @ManyToOne(cascade =  CascadeType.ALL)
     Reservation res  ;

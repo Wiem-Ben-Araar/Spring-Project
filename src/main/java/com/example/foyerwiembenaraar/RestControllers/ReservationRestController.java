@@ -4,6 +4,7 @@ import com.example.foyerwiembenaraar.DAO.Entities.Chambre;
 import com.example.foyerwiembenaraar.DAO.Entities.Reservation;
 import com.example.foyerwiembenaraar.Services.IReservationService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,4 +38,6 @@ public class ReservationRestController {
     void DeleteReservation(@RequestBody Reservation r){
         iReservationService.delete(r);
     }
+
+
 }

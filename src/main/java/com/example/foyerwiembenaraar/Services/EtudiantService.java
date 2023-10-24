@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Builder
@@ -47,5 +48,26 @@ etudiantRepository.deleteById(id);
     @Override
     public void delete(Etudiant e) {
 etudiantRepository.delete(e);
+
     }
+
+    @Override
+    public List<Etudiant> findEtudiantByNomAndPrenom(String nomEt, String prenomEt) {
+        return etudiantRepository.findEtudiantByNomEtAndPrenomEt(nomEt, prenomEt);
+    }
+    @Override
+    public Etudiant findEtudiantByCin(long cin) {
+        return etudiantRepository.findEtudiantByCin(cin);
+    }
+    @Override
+    public List<Etudiant> findEtudiantByDateNaissanceAfter(LocalDate date) {
+        return etudiantRepository.findEtudiantByDateNaissanceAfter(date);
+    }
+
+    @Override
+    public List<Etudiant> findEtudiantsByEcole(String ecole) {
+        return etudiantRepository.findEtudiantsByEcole(ecole);
+    }
+
+
 }

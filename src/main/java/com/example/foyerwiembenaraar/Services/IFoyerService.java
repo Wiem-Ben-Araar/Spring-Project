@@ -1,7 +1,9 @@
 package com.example.foyerwiembenaraar.Services;
 
+import com.example.foyerwiembenaraar.DAO.Entities.Bloc;
 import com.example.foyerwiembenaraar.DAO.Entities.Chambre;
 import com.example.foyerwiembenaraar.DAO.Entities.Foyer;
+import com.example.foyerwiembenaraar.DAO.Entities.Universite;
 
 import java.util.List;
 
@@ -19,4 +21,8 @@ public interface IFoyerService {
     void deleteById(long id);
 
     void delete(Foyer f);
+
+    List<Foyer> getFoyersByBloc(Bloc bloc);
+
+
 }

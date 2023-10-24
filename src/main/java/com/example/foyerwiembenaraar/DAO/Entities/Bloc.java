@@ -1,8 +1,10 @@
 package com.example.foyerwiembenaraar.DAO.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
@@ -12,7 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Bloc {
+public class Bloc implements Serializable {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private long idBloc ;
@@ -21,7 +23,10 @@ public class Bloc {
     @Column(name="capaciteBloc")
     private int capaciteBloc ;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Foyer> foyers;
-
+    @ManyToOne
+    @JoinColumn(name = "foyer_id")
+    private Foyer foyer;
+    @JsonIgnoreProperties("bloc")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="bloc")
+    private Set<Chambre> chambres;
 }

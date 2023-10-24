@@ -1,12 +1,16 @@
 package com.example.foyerwiembenaraar.Services;
 
+import com.example.foyerwiembenaraar.DAO.Entities.Bloc;
 import com.example.foyerwiembenaraar.DAO.Entities.Foyer;
+import com.example.foyerwiembenaraar.DAO.Entities.Universite;
 import com.example.foyerwiembenaraar.DAO.Repositories.FoyerRepository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
+
 @Builder
 @Service
 @AllArgsConstructor
@@ -48,4 +52,12 @@ foyerRepository.deleteById(id);
     public void delete(Foyer f) {
 foyerRepository.delete(f);
     }
+
+
+    @Override
+    public List<Foyer> getFoyersByBloc(Bloc bloc) {
+        return foyerRepository.findByBloc(bloc);
+    }
+
+
 }

@@ -2,6 +2,7 @@ package com.example.foyerwiembenaraar.Services;
 
 import com.example.foyerwiembenaraar.DAO.Entities.Bloc;
 import com.example.foyerwiembenaraar.DAO.Entities.Chambre;
+import com.example.foyerwiembenaraar.DAO.Entities.TypeChambre;
 import com.example.foyerwiembenaraar.DAO.Repositories.BlocRepository;
 import com.example.foyerwiembenaraar.DAO.Repositories.ChambreRepository;
 import lombok.AllArgsConstructor;
@@ -52,5 +53,20 @@ public class ChambreService implements IChambreService {
 
     }
 
+    @Override
+    public Chambre findChambreByNumero(long numeroChambre) {
+        return chambreRepository.findByNumeroChambre(numeroChambre);
+    }
+
+    @Override
+    public List<Chambre> findChambreByType(TypeChambre typeChambre) {
+        return chambreRepository.findByTypeChambre(typeChambre);
+    }
+    @Override
+    public List<Chambre> findByBloc(Bloc bloc) {
+        return chambreRepository.findByBloc(bloc);
+    }
+
+    // Recherche des chambres par bloc et type de chambre
 
 }

@@ -1,14 +1,19 @@
 package com.example.foyerwiembenaraar.RestControllers;
 
 import com.example.foyerwiembenaraar.DAO.Entities.Bloc;
+import com.example.foyerwiembenaraar.DAO.Entities.Foyer;
 import com.example.foyerwiembenaraar.Services.IBlocService;
+import com.example.foyerwiembenaraar.Services.IFoyerService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
+
 public class BlocRestController {
     IBlocService iBlocService;
 
@@ -41,4 +46,55 @@ public class BlocRestController {
     Bloc editBloc(@RequestBody Bloc b){
         return iBlocService.editBloc(b);
     }
+
+    @GetMapping("/blocs/search")
+    public List<Bloc> searchByNomBloc(@RequestParam("nomBloc") String nomBloc) {
+        return iBlocService.findByNomBloc(nomBloc);
+    }
+
+    @GetMapping("/blocs/findByCapaciteBloc")
+    public List<Bloc> findByCapaciteBloc(@RequestParam("capaciteBloc") int capaciteBloc) {
+        return iBlocService.findByCapaciteBloc(capaciteBloc);
+    }
+
+    @GetMapping("/blocs/searchByNomBlocAndCapaciteBloc")
+    public List<Bloc> searchByNomBlocAndCapaciteBloc(
+            @RequestParam("nomBloc") String nomBloc,
+            @RequestParam("capaciteBloc") int capaciteBloc) {
+        return iBlocService.findByNomBlocAndCapaciteBloc(nomBloc, capaciteBloc);
+    }
+
+    @GetMapping("/blocs/searchByNomBlocIgnoreCase")
+    public List<Bloc> searchByNomBlocIgnoreCase(@RequestParam("nomBloc") String nomBloc) {
+        return iBlocService.findByNomBlocIgnoreCase(nomBloc);
+    }
+
+
+    @GetMapping("/blocs/searchByCapaciteBlocGreaterThan")
+    public List<Bloc> searchByCapaciteBlocGreaterThan(@RequestParam("capaciteBloc") int capaciteBloc) {
+        return iBlocService.findByCapaciteBlocGreaterThan(capaciteBloc);
+    }
+
+    @GetMapping("/blocs/searchByNomBlocContaining")
+    public List<Bloc> searchByNomBlocContaining(@RequestParam("subString") String subString) {
+        return iBlocService.findByNomBlocContaining(subString);
+    }
+
+    @GetMapping("/blocs/findAllByOrderByNomBlocAsc")
+    public List<Bloc> findAllByOrderByNomBlocAsc() {
+        return iBlocService.findAllByOrderByNomBlocAsc();
+    }
+
+    @GetMapping("/blocs/searchByNomBlocOrCapaciteBloc")
+    public List<Bloc> searchByNomBlocOrCapaciteBloc(
+            @RequestParam("nomBloc") String nomBloc,
+            @RequestParam("capaciteBloc") int capaciteBloc) {
+        return iBlocService.findByNomBlocOrCapaciteBloc(nomBloc, capaciteBloc);
+    }
+
+
+
+
+
+
 }

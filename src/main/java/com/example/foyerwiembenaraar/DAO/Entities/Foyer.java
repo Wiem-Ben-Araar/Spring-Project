@@ -1,8 +1,12 @@
 package com.example.foyerwiembenaraar.DAO.Entities;
 
 import com.example.foyerwiembenaraar.DAO.Entities.Universite;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name="Foyer")
@@ -11,7 +15,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Foyer {
+public class Foyer implements Serializable {
     @Id
     private  String idFoyer ;
     @Column(name="nomFoyer")
@@ -19,7 +23,9 @@ public class Foyer {
 
     @Column(name="capaciteFoyer")
     private long capaciteFoyer ;
+    @JsonIgnoreProperties("foyer")
+    @OneToMany(mappedBy = "foyer")
+    private Set<Bloc> bloc;
 
-    @OneToOne(mappedBy = "foyer")
-    private Universite universite ;
+
 }

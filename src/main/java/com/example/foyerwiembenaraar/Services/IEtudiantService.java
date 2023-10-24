@@ -3,6 +3,7 @@ package com.example.foyerwiembenaraar.Services;
 import com.example.foyerwiembenaraar.DAO.Entities.Chambre;
 import com.example.foyerwiembenaraar.DAO.Entities.Etudiant;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IEtudiantService {
@@ -19,4 +20,14 @@ public interface IEtudiantService {
     void deleteById(long id);
 
     void delete(Etudiant e);
+    List<Etudiant> findEtudiantByNomAndPrenom(String nomEt, String prenomEt);
+
+    Etudiant findEtudiantByCin(long cin);
+
+    List<Etudiant> findEtudiantByDateNaissanceAfter(LocalDate date);
+
+    List<Etudiant> findEtudiantsByEcole(String ecole);
+
+
+
 }

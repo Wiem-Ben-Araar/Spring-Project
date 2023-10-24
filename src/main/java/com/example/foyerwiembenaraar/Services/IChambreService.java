@@ -1,7 +1,9 @@
 package com.example.foyerwiembenaraar.Services;
 
 
+import com.example.foyerwiembenaraar.DAO.Entities.Bloc;
 import com.example.foyerwiembenaraar.DAO.Entities.Chambre;
+import com.example.foyerwiembenaraar.DAO.Entities.TypeChambre;
 
 import java.util.List;
 
@@ -21,4 +23,10 @@ public interface IChambreService {
     void deleteById(long id);
 
     void delete(Chambre c);
+
+    Chambre findChambreByNumero(long numeroChambre);
+    List<Chambre> findChambreByType(TypeChambre typeChambre);
+    List<Chambre> findByBloc(Bloc bloc);
+
+
 }
