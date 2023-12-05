@@ -1,10 +1,12 @@
 package com.example.foyerwiembenaraar.DAO.Entities;
 
 import com.example.foyerwiembenaraar.DAO.Entities.Reservation;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -31,7 +33,9 @@ public class Etudiant {
     private LocalDate dateNaissance ;
 
 
-    @ManyToMany(mappedBy = "etu" , cascade =  CascadeType.ALL)
-    private Set<Reservation> res ;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "etudiants" , cascade =  CascadeType.ALL)
+    private Set<Reservation> resservations =new HashSet<>();
+
 
 }

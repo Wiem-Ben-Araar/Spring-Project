@@ -24,9 +24,9 @@ public interface IChambreService {
 
     void delete(Chambre c);
 
-    Chambre findChambreByNumero(long numeroChambre);
-    List<Chambre> findChambreByType(TypeChambre typeChambre);
-    List<Chambre> findByBloc(Bloc bloc);
+    List<Chambre> getChambresParNomBloc( String nomBloc) ;
 
-
+    void listeChambreParBloc();
+    void pourcentageChambreParTypeChambre();
+    void nbPlacesDisponibleParChambreAnneeEnCours();
 }

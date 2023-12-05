@@ -47,4 +47,8 @@ public class FoyerRestController {
 
         return iFoyerService.getFoyersByBloc(bloc);
     }
+    @PostMapping("ajouterFoyerEtAffecterAUniversite/{id}")
+    Foyer ajouterFoyerEtAffecterAUniversite(@PathVariable("id") long id , @RequestBody Foyer foyer){
+        return  iFoyerService.ajouterFoyerEtAffecterAUniversite(foyer , id);
+    }
 }

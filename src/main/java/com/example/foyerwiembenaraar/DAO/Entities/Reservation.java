@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -26,5 +27,5 @@ public class Reservation {
     private Boolean estValide ;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    public Set<Etudiant> etu ;
+    public Set<Etudiant> etudiants =new HashSet<>();
 }

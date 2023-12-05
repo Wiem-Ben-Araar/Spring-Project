@@ -4,6 +4,7 @@ import com.example.foyerwiembenaraar.DAO.Entities.Bloc;
 import com.example.foyerwiembenaraar.DAO.Entities.Foyer;
 import com.example.foyerwiembenaraar.DAO.Entities.Universite;
 import com.example.foyerwiembenaraar.DAO.Repositories.FoyerRepository;
+import com.example.foyerwiembenaraar.DAO.Repositories.UniversiteRepository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ import java.util.Set;
 public class FoyerService implements IFoyerService{
 
     FoyerRepository foyerRepository;
-
+    UniversiteRepository universiteRepository;
     @Override
     public Foyer addFoyer(Foyer f) {
         return foyerRepository.save(f);
@@ -56,8 +57,17 @@ foyerRepository.delete(f);
 
     @Override
     public List<Foyer> getFoyersByBloc(Bloc bloc) {
-        return foyerRepository.findByBloc(bloc);
+        return foyerRepository.findByBlocs(bloc);
     }
+    @Override
+    public Foyer ajouterFoyerEtAffecterAUniversite(Foyer foyer, long idUniversite) {
+        Universite u = universiteRepository.findById(idUniversite).get();
+        foyerRepository.save(foyer);
+        u.setFoyer(foyer);
+        universiteRepository.save(u);
+        return foyer;
+    }
+
 
 
 }

@@ -23,6 +23,7 @@ public interface IFoyerService {
     void delete(Foyer f);
 
     List<Foyer> getFoyersByBloc(Bloc bloc);
+    Foyer ajouterFoyerEtAffecterAUniversite (Foyer foyer, long idUniversite) ;
 
 
 }

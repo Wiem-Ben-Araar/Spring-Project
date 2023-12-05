@@ -19,7 +19,7 @@ public class UniversiteRestController {
         return iUniversiteService.findAll();
     }
 
-    @PostMapping("/addUniversite")
+    @PostMapping("addUniversite")
     Universite addUniversite(@RequestBody Universite u){
         return iUniversiteService.addUniversite(u);
     }
@@ -34,5 +34,16 @@ public class UniversiteRestController {
     @DeleteMapping("DeleteUniversite")
     void DeleteUniversite(@RequestBody Universite u){
         iUniversiteService.delete(u);
+    }
+
+    @PutMapping("/updateUniversite/{idFoyer}/{nomUniversite}")
+    Universite affecterFoyerAuniversite(@PathVariable("idFoyer") long idFoyer ,
+                                        @PathVariable("nomUniversite") String nomUniversite){
+        return iUniversiteService.affecterFoyerAUniversite(idFoyer,nomUniversite);
+    }
+
+    @PutMapping("desaffecterUniversite/{idUnive}")
+    Universite descaffecterFoyer(@PathVariable("idUnive")long id){
+        return iUniversiteService.desaffecterFoyerAUniversite(id);
     }
 }

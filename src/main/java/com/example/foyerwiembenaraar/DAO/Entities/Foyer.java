@@ -6,10 +6,11 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name="Foyer")
+@Table(name = "foyer")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,15 +18,17 @@ import java.util.Set;
 @Builder
 public class Foyer implements Serializable {
     @Id
-    private  String idFoyer ;
-    @Column(name="nomFoyer")
-    private String nomFoyer ;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long idFoyer;
 
-    @Column(name="capaciteFoyer")
-    private long capaciteFoyer ;
-    @JsonIgnoreProperties("foyer")
-    @OneToMany(mappedBy = "foyer")
-    private Set<Bloc> bloc;
+    private String nomFoyer;
 
+    @Column(name = "capaciteFoyer")
+    private long capaciteFoyer;
 
+    @OneToOne(mappedBy = "foyer" , cascade = CascadeType.ALL)
+    private Universite universite ;
+
+    @OneToMany(mappedBy = "foyer"  , cascade = CascadeType.ALL)
+    List<Bloc> blocs ;
 }

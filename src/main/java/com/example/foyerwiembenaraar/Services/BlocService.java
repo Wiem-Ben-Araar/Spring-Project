@@ -1,22 +1,28 @@
 package com.example.foyerwiembenaraar.Services;
 
 import com.example.foyerwiembenaraar.DAO.Entities.Bloc;
+import com.example.foyerwiembenaraar.DAO.Entities.Chambre;
 import com.example.foyerwiembenaraar.DAO.Entities.Foyer;
 import com.example.foyerwiembenaraar.DAO.Entities.Universite;
 import com.example.foyerwiembenaraar.DAO.Repositories.BlocRepository;
+import com.example.foyerwiembenaraar.DAO.Repositories.ChambreRepository;
+import com.example.foyerwiembenaraar.DAO.Repositories.FoyerRepository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Setter;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 @Builder
 @Service
 @AllArgsConstructor
 public class BlocService implements IBlocService{
-
-        BlocRepository blocRepository;
-
+FoyerRepository foyerRepository;
+BlocRepository blocRepository;
+ChambreRepository chambreRepository;
 
         @Override
         public Bloc addBloc(Bloc b) {
@@ -98,5 +104,27 @@ public class BlocService implements IBlocService{
         }
 
 
+        @Override
+        public Bloc affecterChambresABloc(List<Integer> numChambre, String nomBloc) {
+                Bloc b = blocRepository.getBlocByNomBloc(nomBloc);
+                Set<Chambre> chambres = new HashSet<>();
+                numChambre.forEach(numero ->{
+                        Chambre c = chambreRepository.findByNumeroChambre(numero);
+                        c.setBloc(b);
+                        chambreRepository.save(c);
 
+                });
+               return b;
+        }
+
+
+        @Override
+        public Bloc affecterBlocAFoyer(String nomBloc, String nomFoyer) {
+                //Parent howa Bloc
+                Foyer f = foyerRepository.findFoyerByNomFoyer(nomFoyer);
+                Bloc b = blocRepository.getBlocByNomBloc(nomBloc);
+                b.setFoyer(f);
+
+                return blocRepository.save(b);
+        }
 }

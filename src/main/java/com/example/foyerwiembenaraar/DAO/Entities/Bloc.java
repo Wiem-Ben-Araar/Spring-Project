@@ -1,10 +1,12 @@
 package com.example.foyerwiembenaraar.DAO.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -23,10 +25,11 @@ public class Bloc implements Serializable {
     @Column(name="capaciteBloc")
     private int capaciteBloc ;
 
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "foyer_id")
-    private Foyer foyer;
-    @JsonIgnoreProperties("bloc")
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="bloc")
-    private Set<Chambre> chambres;
+    Foyer foyer ;
+
+
+    @OneToMany(mappedBy = "bloc" , cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Set<Chambre> chambres = new HashSet<>();
 }

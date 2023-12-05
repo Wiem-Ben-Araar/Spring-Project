@@ -48,28 +48,11 @@ public class ChambreRestController {
         iChambreService.delete(c);
     }
 
-    @GetMapping("/findChambreByNumero/{numeroChambre}")
-    public Chambre findChambreByNumero(@PathVariable("numeroChambre") long numeroChambre) {
-        return iChambreService.findChambreByNumero(numeroChambre);
+    @GetMapping("getChamberList/{nomBloc}")
+    List<Chambre> getChambresParNomBloc(@PathVariable("nomBloc") String nomBloc){
+        return iChambreService.getChambresParNomBloc(nomBloc);
     }
 
-    @GetMapping("/findChambreByType/{typeChambre}")
-    public List<Chambre> findChambreByType(@PathVariable("typeChambre") TypeChambre typeChambre) {
-        return iChambreService.findChambreByType(typeChambre);
-    }
-
-    // 3- Recherche des chambres par bloc
-
-    @GetMapping("/chambres/searchByBloc")
-    public List<Chambre> searchChambresByBloc(@RequestParam("idBloc") long idBloc) {
-        Bloc bloc = iBlocService.findById(idBloc);
-        if (bloc != null) {
-            return iChambreService.findByBloc(bloc);
-        } else {
-            // Gérez le cas où le bloc n'est pas trouvé
-            return Collections.emptyList();
-        }
-    }
 
 
 }

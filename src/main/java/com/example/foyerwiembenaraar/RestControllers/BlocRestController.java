@@ -5,6 +5,8 @@ import com.example.foyerwiembenaraar.DAO.Entities.Foyer;
 import com.example.foyerwiembenaraar.Services.IBlocService;
 import com.example.foyerwiembenaraar.Services.IFoyerService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -92,9 +94,16 @@ public class BlocRestController {
         return iBlocService.findByNomBlocOrCapaciteBloc(nomBloc, capaciteBloc);
     }
 
+    @PutMapping("affecterChamberABloc/{nomBloc}")
+    Bloc affecterChambresABloc(@RequestBody List<Integer> numeros , @PathVariable("nomBloc") String nomBloc){
+        return iBlocService.affecterChambresABloc(numeros , nomBloc);
+    }
 
 
-
-
+    @PutMapping("affecterBlocFoyer/{nomBloc}/{nomFoyer}")
+    Bloc affecterBlocAFoyer(@PathVariable("nomFoyer") String nomFoyer ,
+                            @PathVariable("nomBloc") String nomBloc ){
+        return iBlocService.affecterBlocAFoyer(nomBloc, nomFoyer);
+    }
 
 }

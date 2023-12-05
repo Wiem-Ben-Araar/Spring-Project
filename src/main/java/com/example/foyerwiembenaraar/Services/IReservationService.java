@@ -24,5 +24,5 @@ public interface IReservationService {
 
     void delete(Reservation r);
 
-
+    Reservation ajouterReservationEtAssignerAChambreEtAEtudiant (int numChambre, long cin) ;
 }
